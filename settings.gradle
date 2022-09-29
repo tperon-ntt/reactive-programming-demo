@@ -1,0 +1,5 @@
+rootProject.name = 'demoProject'
+
+include 'message-server'
+include 'customer-service'
+include 'marketing-service'
