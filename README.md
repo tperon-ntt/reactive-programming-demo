@@ -1,15 +1,15 @@
 # DEMO REACTIVE PROGRAMMING
 
-It's a simple example of reactive servers and client.
+It's a simple example of reactive servers and client. 
 
 ### Prerequisites
 
 - OpenJDK 17
 - Gradle (7.5.1)
 - NodeJs 18.x
-- Yarn
-- Local MongoDB
-- Local Redis
+- Yarn 1.22.x
+- Local MongoDB 4+
+- Local Redis 6+
 
 ### Project overview
 
@@ -23,7 +23,7 @@ It's a simple example of reactive servers and client.
 [nodejs-client](nodejs-client) also can read all saved data from message-server APIs.
 
 
-### Build & Execute
+### Build modules
 Please, If you are using a **Windows OS** you should use **gradle.bat** command.
 
 - Build/Test current project from root of the project
@@ -33,6 +33,7 @@ $ ./gradlew clean build
 $ cd nodejs-client && yarn install && cd -
 ```
 
+### Run Servers
 - Run Spring boot servers from root of the project
 ```
 $ ./gradlew customer-service:bootRun 
@@ -42,19 +43,18 @@ $ ./gradlew message-server:bootRun
 $ ./gradlew marketing-service:bootRun  
 ```
 
+### Run the client
 - Run NodeJs client for import data 
-```
-$ cd nodejs-client && yarn ts-node app.ts --type=import && cd -
-```
-
-- Run NodeJs client for import and get all customers data
 ```
 Realtime import
 $ cd nodejs-client && yarn ts-node app.ts --type=import && cd - 
 
 Import customer every 1 second
-$ cd nodejs-client && yarn ts-node app.ts --type=import && cd - 
+$ cd nodejs-client && yarn ts-node app.ts --type=importDelay && cd - 
+```
 
+- Run NodeJs client for import and get all customers data
+```
 Get customers data from message-server every 1 second
 $ cd nodejs-client && yarn ts-node app.ts --type=getWDelay && cd -
 
