@@ -38,3 +38,7 @@ out/
 
 nodejs-client/node_modules
 nodejs-client/package-lock.json
+
+customer-service/build/
+marketing-service/build/
+message-server/build/
