@@ -46,4 +46,14 @@ public class MarketingService {
         .timeout(Duration.ofSeconds(marketingServiceClientConfig.getClientTimeout()))
         .retry();
   }
+
+  public Mono<MarketingData> getByEmail(String email) {
+    log.info("Get All Marketing data");
+    return marketingClient.get()
+        .uri((uriBuilder -> uriBuilder.path(marketingServiceClientConfig.getGetSingleEndpoint() + "/" + email ).build()))
+        .retrieve()
+        .bodyToMono(MarketingData.class)
+        .timeout(Duration.ofSeconds(marketingServiceClientConfig.getClientTimeout()))
+        .retry();
+  }
 }

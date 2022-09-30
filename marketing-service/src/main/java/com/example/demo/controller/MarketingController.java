@@ -34,6 +34,13 @@ public class MarketingController
     return marketingService.getAllMarketingData();
   }
 
+  @GetMapping("/get/{email}")
+  public Mono<MarketingData> getAllCustomers(
+      @PathVariable(name = "email") String email
+  ) {
+    return marketingService.getMarketingData(email);
+  }
+
   private Mono<MarketingData> manageError(Throwable error) {
     log.error( "Error during marketing save ", error);
     return Mono.just(

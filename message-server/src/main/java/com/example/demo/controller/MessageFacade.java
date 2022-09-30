@@ -32,12 +32,23 @@ public class MessageFacade {
 
 
   public Flux<CustomerDataAll> getAllCustomers( ) {
-    return Flux.zip(
-        customerService.getAll(),
-        marketingService.getAll()
-    ).map(
-        result -> responseConverter.convertAllResponse(result)
-    );
+    return customerService.getAll().map(
+        customer -> responseConverter.convertFromCustomerData(customer)
+    ).flatMap( this::setMarketingDataIntoCustomer );
+  }
+
+  private Mono<CustomerDataAll> setMarketingDataIntoCustomer(
+      CustomerDataAll customerData
+  ) {
+    return marketingService.getByEmail(customerData.getEmail())
+        .map(
+            marketingData -> {
+              customerData.setNewsMail(marketingData.getNewsMail());
+              customerData.setWelcomeMail(marketingData.getWelcomeMail());
+
+              return customerData;
+            }
+        );
   }
 
 }

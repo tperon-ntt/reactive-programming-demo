@@ -14,6 +14,7 @@ public class MarketingServiceClientConfig extends WebClientConfig{
 
   private String saveEndpoint;
   private String getEndpoint;
+  private String getSingleEndpoint;
 
 
   @Bean(name = "marketingClient")

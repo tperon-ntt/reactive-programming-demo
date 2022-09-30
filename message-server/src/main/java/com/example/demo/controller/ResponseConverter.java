@@ -37,4 +37,14 @@ public class ResponseConverter {
         .newsMail(marketingData.getNewsMail())
         .build();
   }
+
+  public CustomerDataAll convertFromCustomerData(
+      CustomerData customerData
+  ) {
+    return CustomerDataAll.builder()
+        .email(customerData.getEmail())
+        .name(customerData.getName())
+        .address(customerData.getAddress())
+        .build();
+  }
 }
